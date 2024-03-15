@@ -1,0 +1,8 @@
+{
+  "name": "Quick ChatGPT",
+  "description": "Quickly chat with ChatGPT",
+  "uuid": "quick-chatgpt@rehn.dev",
+  "shell-version": [
+    "45"
+  ]
+}
