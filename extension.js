@@ -31,14 +31,24 @@ class ChatGPTIndicator extends PanelMenu.Button {
     _init() {
         super._init(0.0, _('ChatGPT Indicator'));
 
-        let icon = new St.Icon({
-            icon_name: 'face-smile-symbolic',
-            style_class: 'system-status-icon',
-        });
-
+        const icon = this._getIcon()
         this.add_child(icon);
+
         this.subprocess = null;
         this.connect('button-press-event', this._onButtonPress.bind(this));
+    }
+
+    _getIcon() {
+        const extensionObject = Extension.lookupByURL(import.meta.url);
+        const dir = extensionObject.metadata.path;
+        const iconPath = `${dir}/icons/quick-chatgpt-icon.svg`;
+        const gicon = Gio.icon_new_for_string(iconPath);
+        const icon = new St.Icon({
+            gicon: gicon,
+            icon_size: 18,
+        });
+
+        return icon
     }
 
     _onButtonPress() {
